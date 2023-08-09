@@ -13,6 +13,10 @@
     </a>
 </div>
 
+> **Note**
+> 
+> You need java 17 to run
+
 ---
 
 ### Current transformers:
