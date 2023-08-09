@@ -1,0 +1,46 @@
+plugins {
+    id 'application'
+    id 'org.jetbrains.kotlin.jvm' version '1.8.21'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+mainClassName = 'Launcher'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+    implementation 'org.jetbrains.kotlin:kotlin-reflect'
+    implementation 'com.google.guava:guava:32.1.1-jre'
+    implementation 'org.apache.commons:commons-lang3:3.13.0'
+    implementation 'org.apache.logging.log4j:log4j-api:2.20.0'
+    implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
+    implementation 'org.ow2.asm:asm:9.5'
+    implementation 'org.ow2.asm:asm-commons:9.5'
+    implementation 'org.ow2.asm:asm-util:9.5'
+    implementation 'org.ow2.asm:asm-tree:9.5'
+
+    implementation 'com.formdev:flatlaf:3.1.1'
+    implementation 'com.formdev:flatlaf-intellij-themes:3.1.1'
+    implementation 'com.formdev:flatlaf-fonts-inter:3.19'
+    implementation files('C:/Users/admin/Downloads/swing-jnafilechooser.jar')
+
+    testImplementation 'org.ow2.asm:asm-test:9.5'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
+    testImplementation 'org.mockito.kotlin:mockito-kotlin:5.0.0'
+}
+
+kotlin {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
