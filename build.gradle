@@ -1,5 +1,6 @@
 plugins {
     id 'application'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
     id 'org.jetbrains.kotlin.jvm' version '1.8.21'
 }
 
@@ -40,6 +41,8 @@ kotlin {
         languageVersion.set(JavaLanguageVersion.of(17))
     }
 }
+
+shadowJar {}
 
 test {
     useJUnitPlatform()
