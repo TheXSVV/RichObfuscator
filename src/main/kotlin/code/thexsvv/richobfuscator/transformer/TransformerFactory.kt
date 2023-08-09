@@ -24,6 +24,13 @@ class TransformerFactory {
         }
     }
 
+    fun getTransformer(clazz: Class<out Transformer>): Transformer? {
+        return transformers.stream()
+            .filter { transformer: Transformer -> transformer.javaClass == clazz }
+            .findFirst()
+            .orElse(null)
+    }
+
     fun transformers(): List<Transformer> {
         return transformers;
     }

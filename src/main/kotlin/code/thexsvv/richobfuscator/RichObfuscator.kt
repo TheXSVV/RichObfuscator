@@ -11,34 +11,32 @@ class RichObfuscator {
     private val LOGGER = LogManager.getLogger(javaClass);
     private val processor = JarProcessor();
 
-    fun obfuscate(session: Session) {
-        Thread({
-            LOGGER.info("JDK Version: ${System.getProperty("java.version")}");
-            LOGGER.info("Processing jar file: ${session.input.absolutePath}");
-            val classes = processor.processFile(session.input);
-            val factory = TransformerFactory.getInstance();
-            LOGGER.info("Loaded ${classes.size} classes");
-            LOGGER.info("Loaded ${factory.transformers().size} transformers");
-            val enabledTransformers = factory.transformers().stream()
-                    .filter { transformer -> transformer.enabled }
-                    .collect(Collectors.toList());
-            LOGGER.info("Enabled ${enabledTransformers.size} transformers");
+    fun obfuscate(session: Session, select: Boolean) {
+        LOGGER.info("Processing jar file: ${session.input.absolutePath}");
+        val classes = processor.processFile(session.input);
+        val factory = TransformerFactory.getInstance();
+        LOGGER.info("Loaded ${classes.size} classes");
+        LOGGER.info("Loaded ${factory.transformers().size} transformers");
+        val enabledTransformers = factory.transformers().stream()
+            .filter { transformer -> transformer.enabled }
+            .collect(Collectors.toList());
+        LOGGER.info("Enabled ${enabledTransformers.size} transformers");
 
-            for (transformer in enabledTransformers) {
-                LOGGER.info("Transforming using: ${transformer.name}");
-                for (classNode in classes)
-                    transformer.transform(classNode);
-            }
-            LOGGER.info("Transformed ${classes.size} classes");
+        for (transformer in enabledTransformers) {
+            LOGGER.info("Transforming using: ${transformer.name}");
+            for (classNode in classes)
+                transformer.transform(classNode);
+        }
+        LOGGER.info("Transformed ${classes.size} classes");
 
-            if (session.output.exists())
-                session.output.delete();
-            processor.dumpFile(session.input, session.output, classes);
+        if (session.output.exists())
+            session.output.delete();
+        processor.dumpFile(session.input, session.output, classes);
 
-            LOGGER.info("Dumped ${classes.size} classes");
-            LOGGER.info("Saved to ${session.output.absolutePath}");
-            //Runtime.getRuntime().exec("explorer.exe /select,${session.output.absolutePath}");
-        }, "Obfuscation-Thread").start();
+        LOGGER.info("Dumped ${classes.size} classes");
+        LOGGER.info("Saved to ${session.output.absolutePath}");
+        if (select)
+            Runtime.getRuntime().exec("explorer.exe /select,${session.output.absolutePath}");
     }
 
     companion object {

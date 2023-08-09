@@ -9,7 +9,7 @@ import javax.swing.JComboBox
 
 class IntegerTransformer : Transformer("Integer encryption") {
 
-    private val comboBox = JComboBox(arrayOf("normal", "heavy"));
+    private val comboBox = JComboBox(arrayOf("normal"));
     private val arrayTransformer = NormalIntegerTransformer();
 
     override fun addSettings(formBuilder: FormBuilder) {

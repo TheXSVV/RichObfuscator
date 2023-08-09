@@ -58,7 +58,7 @@ object Launcher {
                 RichObfuscator.getInstance().obfuscate(Session(
                         File(inputLocationField.text),
                         File(outputLocationField.text)
-                ));
+                ), true);
         };
         frame.rootPane.defaultButton = runButton;
         runButton.requestFocus();

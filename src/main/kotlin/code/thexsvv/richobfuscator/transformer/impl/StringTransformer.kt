@@ -15,7 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger
 class StringTransformer : Transformer("String encryption") {
 
     companion object {
-        val decryptName = ZalgoUtils.generateZalgo(50);
+        val decryptName = ZalgoUtils.generateZalgo(5);
         val packageName = StringBuilder();
 
         init {
@@ -46,14 +46,14 @@ class StringTransformer : Transformer("String encryption") {
                             .filter { insn -> insn is LdcInsnNode && insn.cst is String }
                             .map { insn -> insn as LdcInsnNode }
                             .forEach { insn ->
-                                val insnMapKey = ZalgoUtils.generateZalgo(30);
+                                val insnMapKey = ZalgoUtils.generateZalgo(2);
                                 val value = insn.cst as String;
 
                                 pushList.add(LabelNode());
                                 pushList.add(FieldInsnNode(GETSTATIC, classNode.name, fieldNode.name, fieldNode.desc));
                                 pushList.add(LdcInsnNode(insnMapKey));
                                 pushList.add(LdcInsnNode(Encrypt.encrypt(value)));
-                                pushList.add(LdcInsnNode(ZalgoUtils.generateZalgo(15)));
+                                pushList.add(LdcInsnNode(ZalgoUtils.generateZalgo(5)));
                                 pushList.add(MethodInsnNode(INVOKESTATIC, packageName.toString()+"a", decryptName, "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"));
                                 pushList.add(MethodInsnNode(INVOKEINTERFACE, Type.getInternalName(MutableMap::class.java), "put", "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;"));
                                 pushList.add(InsnNode(POP));

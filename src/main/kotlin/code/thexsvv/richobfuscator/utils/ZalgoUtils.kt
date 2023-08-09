@@ -17,9 +17,9 @@ class ZalgoUtils {
             val stringBuilder = StringBuilder();
 
             for (i in 0 until length) {
-                stringBuilder.append(RandomStringUtils.random(1));
-                for (j in 0 until 150)
-                    stringBuilder.append("\n").append(ZALGO_CHARS[RandomUtils.nextInt(0, ZALGO_CHARS.size-1)]);
+                stringBuilder.append("\n\n").append(RandomStringUtils.random(1));
+                for (j in 0 until 5)
+                    stringBuilder.append(ZALGO_CHARS[RandomUtils.nextInt(0, ZALGO_CHARS.size-1)]);
             }
 
             return stringBuilder.toString();

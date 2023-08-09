@@ -53,8 +53,8 @@ class NormalIntegerTransformer : IntegerTransformer.IntegerTransformer() {
             ) continue;
 
             for (insn in methodNode.instructions) {
-                val value: Int = getInt(insn);
-                if (value != -1) {
+                if (insn is IntInsnNode) {
+                    val value: Int = getInt(insn);
                     pushList.add(LabelNode());
                     pushList.add(
                         FieldInsnNode(

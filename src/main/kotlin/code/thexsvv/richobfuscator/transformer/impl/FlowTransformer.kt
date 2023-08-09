@@ -7,9 +7,6 @@ import code.thexsvv.richobfuscator.utils.ZalgoUtils
 import org.objectweb.asm.Opcodes.*
 import org.objectweb.asm.Type
 import org.objectweb.asm.tree.*
-import org.objectweb.asm.tree.analysis.Analyzer
-import org.objectweb.asm.tree.analysis.BasicInterpreter
-import org.objectweb.asm.tree.analysis.BasicValue
 import java.util.*
 
 @Suppress("LABEL_NAME_CLASH")
@@ -20,7 +17,7 @@ class FlowTransformer : Transformer("Main flow (-noverify)") {
     override fun transform(classNode: ClassNode) {
         val fieldNode = FieldNode(
             ACC_PUBLIC or ACC_STATIC,
-            ZalgoUtils.generateZalgo(40),
+            ZalgoUtils.generateZalgo(4),
             Type.INT_TYPE.descriptor,
             null,
             RandomUtils.nextInt(10000, Int.MAX_VALUE)
@@ -103,7 +100,7 @@ class FlowTransformer : Transformer("Main flow (-noverify)") {
                         after.add(pushInt(RandomUtils.nextInt(1000, Int.MAX_VALUE)));
                         after.add(pushInt(RandomUtils.nextInt(1, 500)));
                         after.add(JumpInsnNode(IF_ICMPNE, label5));
-                        after.add(LdcInsnNode(ZalgoUtils.generateZalgo(50)));
+                        after.add(LdcInsnNode(ZalgoUtils.generateZalgo(2)));
                         after.add(TypeInsnNode(NEW, Type.getInternalName(RuntimeException::class.java)));
                         after.add(InsnNode(DUP_X1));
                         after.add(InsnNode(SWAP));
