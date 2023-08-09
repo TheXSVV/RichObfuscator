@@ -11,6 +11,9 @@
     <a href="https://asm.ow2.io">
         <img alt="asm" src="https://img.shields.io/badge/API-ASM-blue">
     </a>
+    <a href="https://discord.gg/yxFuu49Aue">
+        <img alt="discord" src="https://img.shields.io/discord/1138855409675935764?label=Discord">
+    </a>
 </div>
 
 > **Note**
