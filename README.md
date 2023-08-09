@@ -13,6 +13,10 @@
     </a>
 </div>
 
+> **Note**
+> 
+> You need java 17 to run
+
 ---
 
 ### Current transformers:
@@ -32,10 +36,10 @@
 ### Usage
 To use RichObfuscator, follow these steps:
 
-1. Download the jar from releases
+1. Download the [jar from releases](https://github.com/TheXSVV/RichObfuscator/releases)
 2. Change the settings and run obfuscation process
 
-If obfuscation fails submit the issue here
+If obfuscation fails submit the issue [here](https://github.com/TheXSVV/RichObfuscator/issues)
 
 ### Building
 To build RichObfuscator, follow these steps:
